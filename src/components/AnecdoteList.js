@@ -7,6 +7,8 @@ import {
 } from '../reducers/notificationReducer';
 
 function AnecdoteList() {
+  const filter = useSelector(state => state.filter);
+  console.log('filter', filter);
   const anecdotes = useSelector(state => state.anecdotes);
   const dispatch = useDispatch();
 
@@ -19,7 +21,9 @@ function AnecdoteList() {
     }, 5000);
   };
 
-  let sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
+  let sortedAnecdotes = anecdotes
+    .sort((a, b) => b.votes - a.votes)
+    .filter(anecdote => anecdote.content.includes(filter.input));
   return (
     <div>
       {sortedAnecdotes.map(anecdote => (
