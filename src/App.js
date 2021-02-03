@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import AnecdoteForm from './components/AnecdoteForm';
 
 const App = () => {
   const anecdotes = useSelector(state => state);
@@ -10,22 +11,8 @@ const App = () => {
     console.log('vote', id);
   };
 
-  const newNote = e => {
-    e.preventDefault();
-    console.log(e.target.note.value);
-    const content = e.target.note.value;
-    console.log(content);
-    e.target.note.value = '';
-
-    dispatch({
-      type: 'ADD_NOTE',
-      payload: {
-        content
-      }
-    });
-  };
-
   let sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
+
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -38,13 +25,7 @@ const App = () => {
           </div>
         </div>
       ))}
-      <h2>create new</h2>
-      <form onSubmit={newNote}>
-        <div>
-          <input name='note' />
-        </div>
-        <button type='submit'>create</button>
-      </form>
+      <AnecdoteForm />
     </div>
   );
 };
