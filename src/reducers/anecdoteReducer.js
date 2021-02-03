@@ -28,6 +28,12 @@ const reducer = (state = initialState, action) => {
       let stateCopy = [...state];
       stateCopy[index].votes++;
       return stateCopy;
+    case 'ADD_NOTE':
+      console.log(action);
+      const { content } = action.payload;
+      const updatedState = state.concat({ content, id: getId(), votes: 0 });
+      console.log(updatedState);
+      return updatedState;
     default:
       return state;
   }

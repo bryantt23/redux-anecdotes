@@ -10,6 +10,21 @@ const App = () => {
     console.log('vote', id);
   };
 
+  const newNote = e => {
+    e.preventDefault();
+    console.log(e.target.note.value);
+    const content = e.target.note.value;
+    console.log(content);
+    e.target.note.value = '';
+
+    dispatch({
+      type: 'ADD_NOTE',
+      payload: {
+        content
+      }
+    });
+  };
+
   return (
     <div>
       <h2>Anecdotes</h2>
@@ -23,11 +38,11 @@ const App = () => {
         </div>
       ))}
       <h2>create new</h2>
-      <form>
+      <form onSubmit={newNote}>
         <div>
-          <input />
+          <input name='note' />
         </div>
-        <button>create</button>
+        <button type='submit'>create</button>
       </form>
     </div>
   );
