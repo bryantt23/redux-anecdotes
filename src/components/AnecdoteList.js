@@ -7,9 +7,9 @@ function AnecdoteList() {
   const anecdotes = useSelector(state => state.anecdotes);
   const dispatch = useDispatch();
 
-  const vote = id => {
+  const vote = (id, content) => {
     dispatch(anecdoteVote(id));
-    dispatch(notificationAddVote(id));
+    dispatch(notificationAddVote(content));
   };
 
   let sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
@@ -20,7 +20,9 @@ function AnecdoteList() {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
+            <button onClick={() => vote(anecdote.id, anecdote.content)}>
+              vote
+            </button>
           </div>
         </div>
       ))}

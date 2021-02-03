@@ -1,30 +1,36 @@
 const initialState = {};
 console.log(initialState);
 
-export const notificationAddVote = id => {
+export const notificationAddVote = content => {
   return {
-    type: 'VOTE',
-    payload: id
+    type: 'ADD_VOTE_NOTIFICATION',
+    payload: content
   };
 };
 
 export const notificationAddNote = content => {
   return {
-    type: 'ADD_NOTE',
+    type: 'ADD_NOTE_NOTIFICATION',
     payload: content
   };
 };
 
 const notificationReducer = (state = initialState, action) => {
+  let content, message;
+
   switch (action.type) {
-    case 'VOTE':
-      const id = action.payload;
-      console.log('id from notification', id);
-      return state;
-    case 'ADD_NOTE':
-      const content = action.payload;
+    case 'ADD_VOTE_NOTIFICATION':
+      content = action.payload;
       console.log('content from notification', content);
-      return state;
+      message = `You voted for note: ${content}`;
+      console.log('message', message);
+
+      return { ...state, message };
+    case 'ADD_NOTE_NOTIFICATION':
+      content = action.payload;
+      // console.log('content from notification', X);
+      message = `You created note: ${content}`;
+      return { ...state, message };
     default:
       return state;
   }
