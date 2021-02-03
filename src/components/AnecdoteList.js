@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { anecdoteVote } from '../reducers/anecdoteReducer';
+import { notificationAddVote } from '../reducers/notificationReducer';
 
 function AnecdoteList() {
   const anecdotes = useSelector(state => state.anecdotes);
@@ -8,6 +9,7 @@ function AnecdoteList() {
 
   const vote = id => {
     dispatch(anecdoteVote(id));
+    dispatch(notificationAddVote(id));
   };
 
   let sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
