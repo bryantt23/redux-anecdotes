@@ -7,18 +7,9 @@ function AnecdoteForm() {
 
   const newNote = e => {
     e.preventDefault();
-    console.log(e.target.note.value);
     const content = e.target.note.value;
-    console.log(content);
     e.target.note.value = '';
-
     dispatch(addNote(content));
-    // dispatch({
-    //   type: 'ADD_NOTE',
-    //   payload: {
-    //     content
-    //   }
-    // });
   };
 
   return (

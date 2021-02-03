@@ -18,7 +18,6 @@ const asObject = anecdote => {
 };
 
 const initialState = anecdotesAtStart.map(asObject);
-console.log(initialState);
 
 export const anecdoteVote = id => {
   return {
@@ -43,10 +42,8 @@ const anecdoteReducer = (state = initialState, action) => {
       stateCopy[index].votes++;
       return stateCopy;
     case 'ADD_NOTE':
-      console.log(action);
       const content = action.payload;
       const updatedState = state.concat({ content, id: getId(), votes: 0 });
-      console.log(updatedState);
       return updatedState;
     default:
       return state;

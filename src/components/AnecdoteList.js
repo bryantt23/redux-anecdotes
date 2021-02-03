@@ -8,9 +8,6 @@ function AnecdoteList() {
 
   const vote = id => {
     dispatch(anecdoteVote(id));
-    // dispatch({ type: 'VOTE', payload: id });
-
-    console.log('vote', id);
   };
 
   let sortedAnecdotes = anecdotes.sort((a, b) => b.votes - a.votes);
